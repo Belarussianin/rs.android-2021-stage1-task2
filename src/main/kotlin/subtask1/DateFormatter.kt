@@ -1,9 +1,17 @@
 package subtask1
 
-class DateFormatter {
+import java.lang.Exception
+import java.time.DateTimeException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-    // TODO: Complete the following function
-    fun toTextDay(day: String, month: String, year: String): String {
-        throw NotImplementedError("Not implemented")
+class DateFormatter {
+    fun toTextDay(day: String, month: String, year: String): String = try {
+        LocalDateTime.of(year.toInt(), month.toInt(), day.toInt(), 0, 0)
+            .format(DateTimeFormatter.ofPattern("d MMMM, eeee"))
+    } catch (ex: DateTimeException) {
+        "Такого дня не существует"
+    } catch (ex: Exception) {
+        ex.stackTrace.toString()
     }
 }
